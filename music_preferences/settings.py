@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://musicpoll.onrender.com',
+    'https://literature-poll.onrender.com',
 ]
 
 # Application definition
