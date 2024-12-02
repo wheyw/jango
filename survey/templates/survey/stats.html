@@ -1,0 +1,26 @@
+{% extends 'survey/base.html' %}
+
+{% block content %}
+<h1 class="text-center text-primary mb-5">Общая статистика опроса</h1>
+
+{% for data in stats_data %}
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">{{ data.question.text }}</h4>
+    </div>
+    <div class="card-body bg-light">
+        <p class="font-weight-bold">Всего голосов: <span class="text-primary">{{ data.total_votes }}</span></p>
+        <ul class="list-group list-group-flush">
+            {% for choice in data.choices %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="text-secondary">{{ choice.text }}</span>
+                <span class="badge badge-primary badge-pill">
+                    {{ choice.votes }} голосов ({{ choice.percentage|floatformat:1 }}%)
+                </span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

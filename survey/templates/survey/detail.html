@@ -1,0 +1,58 @@
+{% extends 'survey/base.html' %}
+
+{% block content %}
+<h1 class="text-center text-primary mb-5">Общая статистика опроса</h1>
+
+{% for data in stats_data %}
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">{{ data.question.text }}</h4>
+    </div>
+    <div class="card-body bg-light">
+        <p class="font-weight-bold">Всего голосов: <span class="text-primary">{{ data.total_votes }}</span></p>
+        <ul class="list-group list-group-flush">
+            {% for choice in data.choices %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="text-secondary">{{ choice.text }}</span>
+                <span class="badge badge-primary badge-pill">
+                    {{ choice.votes }} голосов ({{ choice.percentage|floatformat:1 }}%)
+                </span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endfor %}
+
+
+<div class="list-group">
+    {% for question in questions %}
+        <a href="{{ question.id }}/" class="list-group-item list-group-item-action">
+            📚 {{ question.text }}
+        </a>
+    {% endfor %}
+</div>
+<a href="/stats" class="btn btn-primary mb-4">Посмотреть статистику</a>
+
+<h1 class="text-center mb-4">{{ question.text }}</h1>
+<form action="{% url 'vote' question.id %}" method="post" class="shadow-sm p-4 bg-light rounded">
+    {% csrf_token %}
+    <div class="mb-3">
+        {% for choice in question.choices.all %}
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="choice" value="{{ choice.id }}" id="choice{{ choice.id }}">
+                <label class="form-check-label" for="choice{{ choice.id }}">
+                    {{ choice.text }}
+                </label>
+            </div>
+        {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Проголосовать</button>
+</form>
+
+{% if error_message %}
+    <div class="alert alert-danger mt-3">{{ error_message }}</div>
+{% endif %}
+
+<a href="/" class="btn btn-link mt-3">⬅️ Вернуться назад</a>
+{% endblock %}

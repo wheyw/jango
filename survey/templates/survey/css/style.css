@@ -1,0 +1,42 @@
+body {
+    background-color: #e0f7fa; 
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    color: #004d40; 
+    font-weight: bold;
+}
+
+.list-group-item {
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: transform 0.2s ease;
+}
+
+.list-group-item:hover {
+    background-color: #26a69a; 
+    color: #e0f2f1; 
+    transform: scale(1.02);
+}
+
+.form-check-label {
+    font-size: 1.1rem;
+    color: #00796b; 
+}
+
+.btn-primary {
+    background-color: #26a69a; 
+    border-color: #004d40; 
+}
+
+.btn-primary:hover {
+    background-color: #00796b; 
+    border-color: #004d40; 
+}
+
+.alert {
+    font-size: 1rem;
+    background-color: #b2dfdb; 
+    color: #004d40; 
+}
