@@ -14,7 +14,7 @@
             {% for choice in data.choices %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span class="text-secondary">{{ choice.text }}</span>
-                <span class="badge badge-primary badge-pill">
+                <span style="color:blue" class="badge badge-primary badge-pill">
                     {{ choice.votes }} голосов ({{ choice.percentage|floatformat:1 }}%)
                 </span>
             </li>
